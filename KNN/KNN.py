@@ -75,20 +75,20 @@ for metric, color in [("manhattan", "blue"), ("euclidean", "red")]:
         label=f"{metric} (mean ± std)"
     )
 
-plt.title("KNN 5-Fold Cross Validation Accuracy (%)")
+plt.title("5-Fold Cross Validation Accuracy (%)")
 plt.xlabel("K value")
 plt.ylabel("Accuracy (%)")
-plt.ylim(20, 35)
+plt.ylim(22, 35)
 plt.legend()
 plt.grid()
 
-print("\nBEST MODEL: ")
+print("\nBest result: ")
 print(f"K={best_k}, Metric={best_metric}, Accuracy={best_acc:.2f}%")
 final_model = KNeighborsClassifier(n_neighbors=best_k, metric=best_metric)
 final_model.fit(X, y)
 
 y_pred = final_model.predict(X_test)
-print("\nTEST ACCURACY:", accuracy_score(y_test, y_pred))
+print("\nFinal accuracy:", accuracy_score(y_test, y_pred))
 print("\nConfusion Matrix:")
 print(confusion_matrix(y_test, y_pred))
 plt.show()
